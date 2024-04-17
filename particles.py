@@ -2,7 +2,7 @@ from typing import NoReturn, Tuple
 
 
 class Particles:
-    def __init__() -> NoReturn:
+    def __init__(self) -> NoReturn:
         self.m_list = []
         self.q_list = []
         self.x_list = []
@@ -13,7 +13,7 @@ class Particles:
         self.particles_amount = 0
 
 
-    def add(m: float, q: float, x0: float, y0: float, vx0: float, vy0: float) -> NoReturn:
+    def add(self, m: float, q: float, x0: float, y0: float, vx0: float, vy0: float) -> NoReturn:
         """
         Adds new particle to equation
 
@@ -33,8 +33,8 @@ class Particles:
             Start y velocity
         """
 
-        self.m_list.append([m])
-        self.q_list.append([q])
+        self.m_list.append(m)
+        self.q_list.append(q)
         self.x_list.append([x0])
         self.y_list.append([y0])
         self.vx_list.append([vx0])
@@ -43,7 +43,7 @@ class Particles:
         self.particles_amount+=1
 
 
-    def get_m(particle_number: int) -> float:
+    def get_m(self, particle_number: int) -> float:
         """
         Returns mass of particle
 
@@ -62,7 +62,7 @@ class Particles:
         return m
 
 
-    def get_q(particle_number: int) -> float:
+    def get_q(self, particle_number: int) -> float:
         """
         Returns charge of particle
 
@@ -81,7 +81,7 @@ class Particles:
         return q
 
     
-    def get_coords(particle_number: int) -> Tuple[float, float]:
+    def get_coords(self, particle_number: int) -> Tuple[float, float]:
         """
         Returns particle's last coordinates
 
@@ -100,7 +100,7 @@ class Particles:
         return coords
 
     
-    def get_v(particle_number: int) -> Tuple[float, float]:
+    def get_v(self, particle_number: int) -> Tuple[float, float]:
         """
         Returns particle's last velocity projections on each axis
 
@@ -115,5 +115,5 @@ class Particles:
             Particle's last velocity projections
         """
 
-        v = (self.vx_list[particle_number][-1], self.xy_list[particle_number][-1])
+        v = (self.vx_list[particle_number][-1], self.vy_list[particle_number][-1])
         return v

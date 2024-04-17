@@ -4,28 +4,28 @@ from typing import NoReturn
 
 
 class Euler:
-    def __init__(dt: int):
+    def __init__(self, dt: int):
         self.dt = dt
         self.particles = Particles()
 
 
-    def calc() -> NoReturn:
+    def calc(self) -> NoReturn:
         """
         Calculates next coordinates and velocities of particles using Euler method
         """
 
-        calc_coords()
-        calc_velocities()
+        self.calc_coords()
+        self.calc_velocities()
 
 
-    def calc_coords() -> NoReturn:
+    def calc_coords(self) -> NoReturn:
         """
         Calculates new coordinates
         """
 
         for particle_number in range(self.particles.particles_amount):
-            x0, y0 = self.particles.get_coords[particle_number]
-            vx0, vy0 = self.particles.get_v[particle_number]
+            x0, y0 = self.particles.get_coords(particle_number)
+            vx0, vy0 = self.particles.get_v(particle_number)
             
             x = x0 + vx0*self.dt
             y = y0 + vy0*self.dt
@@ -35,20 +35,20 @@ class Euler:
             self.particles.y_list[particle_number].append(y)
 
 
-    def calc_velocities() -> NoReturn:
+    def calc_velocities(self) -> NoReturn:
         """
         Calculates new velocities for next step
         """
 
         A = k
         for particle_number in range(self.particles.particles_amount):
-            A*=self.particles.q_list[particle_number]
+            A*=self.particles.get_q(particle_number)
 
         # Lenght between 2 particles
         particle_1 = 0
         particle_2 = 1
-        x1, y1 = self.particles.get_coords[particle_1]
-        x2, y2 = self.particles.get_coords[particle_2]
+        x1, y1 = self.particles.get_coords(particle_1)
+        x2, y2 = self.particles.get_coords(particle_2)
         
         L = math.sqrt((x2-x1)**2 + (y2-y1)**2)
 
@@ -56,6 +56,8 @@ class Euler:
         F = A/(L**2)
 
         for particle_number in range(self.particles.particles_amount):
+            m = self.particles.get_m(particle_number)
+
             # Force projection on each axis
             if particle_number == 0:
                 cos = (x2-x1)/L
@@ -77,8 +79,8 @@ class Euler:
 
 
 if __name__ == '__main__':
-    dt = 10**(-17)
-    n = 200000
+    dt = 10**(-16)
+    n = 1000
 
     k = 9*10**(9)
 
