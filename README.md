@@ -8,7 +8,8 @@ Only Coulomb interaction is taken into account.
 ![Initial conditions](https://github.com/AppleJack-coder/Particle-interaction/blob/main/plots/init_conditions.png)
 
 # Results
-![Result plots](https://github.com/AppleJack-coder/Particle-interaction/blob/main/plots/result_plot.png)
+Result for Euler method:
+![Result plots using Euler method](https://github.com/AppleJack-coder/Particle-interaction/blob/main/plots/result_plot.png)
 
 # TODO list
 - [x] 1. Calculating trajectories of particles using Euler method
