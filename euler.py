@@ -1,6 +1,7 @@
 from particles import Particles
 import math
 from typing import NoReturn
+from plotter import plot_data
 
 
 class Euler:
@@ -57,9 +58,10 @@ class Euler:
 
         for particle_number in range(self.particles.particles_amount):
             m = self.particles.get_m(particle_number)
+            vx0, vy0 = self.particles.get_v(particle_number)
 
             # Force projection on each axis
-            if particle_number == 0:
+            if particle_number != 0:
                 cos = (x2-x1)/L
                 sin = (y2-y1)/L
             else:
@@ -74,8 +76,8 @@ class Euler:
             dvy = (Fy/m)*self.dt
 
             # Save results
-            self.particles.vx_list[particle_number].append(dvx)
-            self.particles.vy_list[particle_number].append(dvy)
+            self.particles.vx_list[particle_number].append(vx0 + dvx)
+            self.particles.vy_list[particle_number].append(vy0 + dvy)
 
 
 if __name__ == '__main__':
@@ -97,5 +99,17 @@ if __name__ == '__main__':
     euler.particles.add(m=64*mp, q=29*e, x0=0, y0=p, vx0=10**6, vy0=0)
     euler.particles.add(m=28*mp, q=14*e, x0=math.sqrt(L**2 - p**2), y0=0, vx0=0, vy0=0)
 
-    # Calculate step
-    euler.calc()
+    for i in range(n):
+        # Calculate step
+        euler.calc()
+
+
+    # Plotting result data
+    plot_data(
+        euler.particles.x_list, 
+        euler.particles.y_list, 
+        n
+    )
+
+    # Wait for user input
+    input('Press ENTER to stop program...')
