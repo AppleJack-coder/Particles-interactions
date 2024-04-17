@@ -5,8 +5,9 @@ from plotter import plot_data
 
 
 class Euler:
-    def __init__(self, dt: int):
+    def __init__(self, dt: float, k: float):
         self.dt = dt
+        self.k = k
         self.particles = Particles()
 
 
@@ -41,7 +42,7 @@ class Euler:
         Calculates new velocities for next step
         """
 
-        A = k
+        A = self.k
         for particle_number in range(self.particles.particles_amount):
             A*=self.particles.get_q(particle_number)
 
@@ -93,7 +94,7 @@ if __name__ == '__main__':
     e = 1.6*10**(-19)
 
     # Creating solution
-    euler = Euler(dt)
+    euler = Euler(dt, k)
 
     # Adding particles
     euler.particles.add(m=64*mp, q=29*e, x0=0, y0=p, vx0=10**6, vy0=0)
