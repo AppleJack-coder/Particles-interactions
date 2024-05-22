@@ -83,7 +83,7 @@ class Euler:
 
 if __name__ == '__main__':
     dt = 10**(-16)
-    n = 1000
+    n = 6000
 
     k = 9*10**(9)
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     euler = Euler(dt, k)
 
     # Adding particles
-    euler.particles.add(m=64*mp, q=29*e, x0=0, y0=p, vx0=10**6, vy0=0)
+    euler.particles.add(m=13*mp, q=29*e, x0=0, y0=p, vx0=7*10**4, vy0=0)
     euler.particles.add(m=28*mp, q=14*e, x0=math.sqrt(L**2 - p**2), y0=0, vx0=0, vy0=0)
 
     for i in range(n):
