@@ -1,5 +1,5 @@
 # Particle-interaction
-Simple python script for calculating Coulomb interaction between 2 particles
+Simple python script for calculating Coulomb interaction between particles
 
 # Task
 Calculate interaction of two (or potential multiple) particles in free space.
@@ -16,4 +16,4 @@ Result for Euler method:
 - [x] 2. Add animations for plots
 - [ ] 3. Add fourth-order Runge-Kutta method
 - [ ] 4. Add multiple particles (not only 2)
-
+- [ ] 5. Create light weight github page for this project
